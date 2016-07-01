@@ -92,6 +92,16 @@ module Podspec
       paths.join(",\n    ")
     end
 
+    def file_list_string_with_header_extension(pathnames)
+      paths = pathnames.map do |pathname|
+        path = pathname.to_s
+        path = path.gsub(/\.m$/, '.{h,m}')
+        "'#{path.to_s}'"
+      end
+
+      paths.join(",\n    ")
+    end
+
     def read(path)
       File.open(path).read
     end
@@ -177,7 +187,7 @@ module Podspec
         'version'             => version,
         'source_files'        => file_list_string(header_files + source_files),
         'public_header_files' => file_list_string(public_header_files),
-        'arc_files'           => file_list_string(arc_files),
+        'arc_files'           => file_list_string_with_header_extension(arc_files),
         'preserve_paths'      => "'Breakpad'",
         'xcconfig'            => "{'HEADER_SEARCH_PATHS' => '#{header_search_paths}'}"
       }
