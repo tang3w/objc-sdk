@@ -1,0 +1,5 @@
+try:
+  install:
+    pre:
+      - echo "Update submodule for AVOSCloudCrashReporting..."
+      - git submodule init
