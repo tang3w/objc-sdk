@@ -87,6 +87,15 @@ AVServiceRegion LCEffectiveServiceRegion = AVServiceRegionDefault;
 
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey
 {
+    static dispatch_once_t onceToken;
+
+    dispatch_once(&onceToken, ^{
+        [self internalSetApplicationId:applicationId clientKey:clientKey];
+    });
+}
+
++ (void)internalSetApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey
+{
     AVConfiguration *configuration = [AVConfiguration sharedInstance];
 
     configuration.applicationId  = applicationId;
