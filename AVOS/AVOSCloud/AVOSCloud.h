@@ -128,6 +128,8 @@ NS_ASSUME_NONNULL_BEGIN
  Sets the applicationId and clientKey of your application.
  @param applicationId The applicaiton id for your LeanCloud application.
  @param clientKey The client key for your LeanCloud application.
+
+ @note: You should call this method just only once when application did finish launch, later call will do nothing.
  */
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey;
 
